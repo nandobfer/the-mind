@@ -1,0 +1,21 @@
+{
+    "start": {
+        "level": 1,
+        "cards": 100,
+        "shurikens": 2,
+        "health": 3
+    },
+
+    "level":
+    {
+        "rewards":
+        {
+            "2": "shuriken",
+            "3": "health",
+            "5": "shuriken",
+            "6": "health",
+            "8": "shuriken", 
+            "9": "health"
+        }
+    }
+}

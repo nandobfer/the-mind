@@ -1,7 +1,6 @@
 from flask import Flask, request
 from game.Table import Table
 
-
 app = Flask(__name__)
 
 table = Table()
@@ -9,7 +8,7 @@ table = Table()
 
 @app.route('/table_status/', methods=['POST'])
 def table_status():
-    # send the table level, health and shurikens
+    ''' send the table level, health and shurikens '''
     global table
 
     data = {
@@ -23,7 +22,7 @@ def table_status():
 
 @app.route('/table_cards/', methods=['POST'])
 def table_cards():
-    #  send the cards that are currently on the  table
+    ''' send the cards that are currently on the  table '''
     global table
 
     data = {"card": table.cards}
@@ -33,7 +32,7 @@ def table_cards():
 
 @app.route('/player_cards/', methods=['POST'])
 def player_cards():
-    # send the cards in player's hand, as well as the quantity of cards in each other player's hands
+    ''' send the cards in player's hand, as well as the quantity of cards in each other player's hands '''
     global table
 
     friends = []
@@ -57,7 +56,7 @@ def player_cards():
 
 @app.route('/players/', methods=['GET'])
 def players_url():
-    # sends the players that currently are on the table
+    ''' sends the players that currently are on the table '''
     global table
 
     # data = {}

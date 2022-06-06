@@ -1,6 +1,6 @@
 import json
 
-with open("../config.json", "r") as file:
+with open("config.json", "r") as file:
     config = json.load(file)
     
 shuriken_bonus = []
@@ -12,3 +12,4 @@ for level in config['level']['rewards']:
         
     elif config['level']['rewards'][level] == 'health':
         health_bonus.append(int(level))
+        

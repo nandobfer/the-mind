@@ -1,5 +1,5 @@
-from config import config
-from game.Card import Card
+from src.config import config
+from src.game.Card import Card
 import random
 
 class Deck():

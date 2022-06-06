@@ -1,5 +1,5 @@
-from config import config
-from game.Deck import Deck
+from src.config import config
+from src.game.Deck import Deck
 
 
 class Table():

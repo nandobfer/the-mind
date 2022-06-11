@@ -45,7 +45,7 @@ function createGame(socket) {
 
         for (const observerFunction of observers[event]) {
             typeof observerFunction === "function" &&
-                observerFunction()
+                observerFunction(state)
         }
     }
 
@@ -62,7 +62,6 @@ function createGame(socket) {
     })()
 
     return {
-        state,
         subscribe,
     }
 }

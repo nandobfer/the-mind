@@ -1,7 +1,5 @@
 function createGameInterface($, game, socket) {
     
-    const { state } = game;
-    
     const $playedCards = $('#playedCards')
     const $myCards = $('#myCards')
     const $card = $('.game-card').eq(0)
@@ -10,7 +8,7 @@ function createGameInterface($, game, socket) {
     const $players = $('#players')
     const $player = $('.player-container').eq(0)
     
-    function renderLevelInfo() {
+    function renderLevelInfo(state) {
         const { level } = state
 
         $status.find('#level').text(level.number)
@@ -18,7 +16,7 @@ function createGameInterface($, game, socket) {
         $status.find('#shuriken').text(level.shuriken)
     }
 
-    function renderPlayers() {
+    function renderPlayers(state) {
         const { players } = state
         $players.html('')
 
@@ -40,7 +38,7 @@ function createGameInterface($, game, socket) {
         }
     }
 
-    function renderPlayedCards() {
+    function renderPlayedCards(state) {
         const { played } = state
         $playedCards.html('')
 
@@ -57,7 +55,7 @@ function createGameInterface($, game, socket) {
         }
     }
 
-    function renderMyCards() {
+    function renderMyCards(state) {
         const { me } = state
         $myCards.html('')
 
@@ -100,7 +98,5 @@ function createGameInterface($, game, socket) {
         game.subscribe('onChangePlayedCards', renderPlayedCards)
     })()
 
-    return {
-        renderLayout
-    }
+    return {}
 }

@@ -1,4 +1,4 @@
-export default function createGameInterface($, game) {
+function createGameInterface($, game) {
     
     const { state } = game;
     

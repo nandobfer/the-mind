@@ -19,9 +19,9 @@ function createGame(socket) {
     }
 
     function addPlayer(player) {
-        console.log(player)
-        // state.players[playerId] = newPlayer
-        // notify('onChangePlayers')
+        const { playerId } = player;
+        state.players[playerId] = player
+        notify('onChangePlayers')
     }
 
     function removePlayer(playerId) {

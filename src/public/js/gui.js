@@ -72,7 +72,7 @@ function createGameInterface($, game, socket) {
             // })
 
             $newCard.addClass('my-card')
-            if (me.willing == cardNumber) {
+            if (me.willing == number) {
                 $newCard.addClass('willing')
             }
 

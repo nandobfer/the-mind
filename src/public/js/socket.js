@@ -33,13 +33,13 @@ function createSocketConnection() {
         }
     }
 
-    function notify(event) {
+    function notify(event, data) {
         if (observers[event] === undefined)
             return;
 
         for (const observerFunction of observers[event]) {
             typeof observerFunction === "function" &&
-                observerFunction()
+                observerFunction(data)
         }
     }
 

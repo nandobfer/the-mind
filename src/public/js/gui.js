@@ -1,4 +1,4 @@
-function createGameInterface($, game) {
+function createGameInterface($, game, socket) {
     
     const { state } = game;
     
@@ -90,7 +90,7 @@ function createGameInterface($, game) {
             .on('selectstart', false);
     };
 
-    function renderLayout() {
+    (function init() {
 
         $('#table').disableSelection();
         
@@ -98,7 +98,7 @@ function createGameInterface($, game) {
         game.subscribe('onChangePlayers', renderPlayers)
         game.subscribe('onChangeMyCards', renderMyCards)
         game.subscribe('onChangePlayedCards', renderPlayedCards)
-    }
+    })()
 
     return {
         renderLayout

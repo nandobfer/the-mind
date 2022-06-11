@@ -83,7 +83,16 @@ export default function createGameInterface($, game) {
         }
     }
 
+    $.fn.disableSelection = function() {
+        return this
+            .attr('unselectable', 'on')
+            .css('user-select', 'none')
+            .on('selectstart', false);
+    };
+
     function renderLayout() {
+
+        $('#table').disableSelection();
 
         renderLevelInfo()
         renderPlayers()

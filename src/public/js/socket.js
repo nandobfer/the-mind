@@ -1,4 +1,4 @@
-export function createSocketConnection(game) {
+function createSocketConnection(game) {
     const socket = io();
 
     socket.on('connect', () => {

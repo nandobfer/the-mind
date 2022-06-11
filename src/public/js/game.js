@@ -1,4 +1,4 @@
-export default function createGame() {
+function createGame() {
     const observers = {
         onChangePlayers: [],
         onChangeLevel: [],
@@ -6,7 +6,7 @@ export default function createGame() {
         onChangePlayedCards: []
     };
 
-    const state = {
+    let state = {
         players: {
             'alice': {
                 cards: 4,
@@ -18,6 +18,7 @@ export default function createGame() {
             },
         },
         me: {
+            playerId: 'alucin0gen',
             cards: [
                 8 , 42, 65, 100
             ],
@@ -31,6 +32,10 @@ export default function createGame() {
             health: 3,
             shuriken: 2,
         }
+    }
+
+    function setState(newState) {
+        state = newState
     }
 
     function setLevel(level) {
@@ -131,6 +136,7 @@ export default function createGame() {
 
     return {
         state,
+        setState,
         setLevel,
         addPlayer,
         removePlayer,

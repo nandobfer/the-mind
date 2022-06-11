@@ -1,4 +1,4 @@
-function createGame() {
+function createGame(socket) {
     const observers = {
         onChangePlayers: [],
         onChangeLevel: [],
@@ -6,36 +6,11 @@ function createGame() {
         onChangePlayedCards: []
     };
 
-    let state = {
-        players: {
-            'alice': {
-                cards: 4,
-                willing: false,
-            },
-            'bob': {
-                cards: 3,
-                willing: false,
-            },
-        },
-        me: {
-            playerId: 'alucin0gen',
-            cards: [
-                8 , 42, 65, 100
-            ],
-            willing: null,
-        },
-        played: [
-            { number: 1, isGood: true }
-        ],
-        level: {
-            number: 4,
-            health: 3,
-            shuriken: 2,
-        }
-    }
+    let state = {}
 
     function setState(newState) {
         state = newState
+        notifyAll()
     }
 
     function setLevel(level) {
@@ -43,75 +18,15 @@ function createGame() {
         notify('onChangeLevel')
     }
 
-    function addPlayer(playerId) {
-        const newPlayer = {
-            cards: 0,
-            willing: false
-        }
-
-        state.players[playerId] = newPlayer
-        notify('onChangePlayers')
+    function addPlayer(player) {
+        console.log(player)
+        // state.players[playerId] = newPlayer
+        // notify('onChangePlayers')
     }
 
     function removePlayer(playerId) {
         delete state.players[playerId]
         notify('onChangePlayers')
-    }
-
-    function updatePlayerCards(playerId, numberOfCards) {
-        if (state.players[playerId]) {
-            state.players[playerId].cards = numberOfCards;
-            notify('onChangePlayers')
-        }
-    }
-
-    function drawCards(cardsNumbers) {
-        state.me.cards = [
-            ...state.me.cards,
-            ...cardsNumbers
-        ]
-        notify('onChangeMyCards')
-    }
-
-    function resetCards() {
-        state.me.cards = []
-        notify('onChangeMyCards')
-    }
-
-    function playCard(playedCardNumber) {
-        const myCards = state.me.cards
-        const i = myCards.findIndex(n => n == playedCardNumber)
-        if (i > -1) {
-            state.played = state.played
-                .map(({ number, isGood }) => {
-                    return {
-                        number,
-                        isGood: isGood ? number < playedCardNumber : isGood
-                    }
-                })
-            state.played.push({
-                number: playedCardNumber,
-                isGood: true
-            })
-            notify('onChangePlayedCards')
-            
-            delete state.me.cards[i]
-            notify('onChangeMyCards')
-        }
-    }
-
-    function onClickMyCard(cardNumber) {
-        if (!cardNumber) return;
-
-        if (state.me.willing == cardNumber) {
-            playCard(cardNumber)
-            state.me.willing = null
-        } else {
-            state.me.willing = cardNumber
-        }
-
-        notify('onChangeMyCards')
-        // emit to server
     }
 
     function subscribe(event, observerFunction) {
@@ -134,16 +49,20 @@ function createGame() {
         }
     }
 
+    function notifyAll() {
+        for (const event of observers) {
+            notify(event)
+        }
+    }
+
+    (function init() {
+        socket.subscribe('onSetup', setState)
+        socket.subscribe('onNewPayer', addPlayer)
+        socket.subscribe('onRemovePlayer', removePlayer)
+    })()
+
     return {
         state,
-        setState,
-        setLevel,
-        addPlayer,
-        removePlayer,
-        updatePlayerCards,
-        playCard,
-        drawCards,
-        resetCards,
         subscribe,
         onClickMyCard,
     }

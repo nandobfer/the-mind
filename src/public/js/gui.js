@@ -93,11 +93,6 @@ function createGameInterface($, game) {
     function renderLayout() {
 
         $('#table').disableSelection();
-
-        renderLevelInfo()
-        renderPlayers()
-        renderPlayedCards()
-        renderMyCards()
         
         game.subscribe('onChangeLevel', renderLevelInfo)
         game.subscribe('onChangePlayers', renderPlayers)

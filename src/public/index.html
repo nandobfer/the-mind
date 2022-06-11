@@ -133,9 +133,7 @@
     <script>
         const socket = createSocketConnection()
         const game = createGame(socket)
-        const { renderLayout } = createGameInterface($, game, socket)
-
-        renderLayout()
+        createGameInterface($, game, socket)
     </script>
 </body>
 

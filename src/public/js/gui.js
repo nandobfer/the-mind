@@ -60,21 +60,24 @@ function createGameInterface($, game, socket) {
         $myCards.html('')
 
         for (let i in me.cards) {
-            const cardNumber = me.cards[i]
+            const { number, isGood } = me.cards[i]
             const $newCard = $card.clone()
 
-            $newCard.attr('id', 'card-number-' + cardNumber)
-            $newCard.data('number', cardNumber)
-            $newCard.find('.card-number').text(cardNumber)
+            $newCard.attr('id', 'card-number-' + number)
+            $newCard.data('number', number)
+            $newCard.find('.card-number').text(number)
             
-            $newCard.on('click', function () {
-                const cardNumber = $(this).data('number')
-                // game.onClickMyCard(cardNumber)
-            })
+            // $newCard.on('click', function () {
+            //     const cardNumber = $(this).data('number')
+            // })
 
             $newCard.addClass('my-card')
             if (me.willing == cardNumber) {
                 $newCard.addClass('willing')
+            }
+
+            if (!isGood) {
+                $newCard.addClass('bad-card')
             }
 
             $myCards.append($newCard)

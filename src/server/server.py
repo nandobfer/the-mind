@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 table = Table()
 
-
 @app.route('/table_status/', methods=['POST'])
 def table_status():
     ''' send the table level, health and shurikens '''

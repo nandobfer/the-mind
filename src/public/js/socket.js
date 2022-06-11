@@ -43,6 +43,6 @@ function createSocketConnection() {
 
     return {
         subscribe,
-        socket
+        emit: socket.emit
     }
 }

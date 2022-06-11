@@ -128,9 +128,10 @@
         crossorigin="anonymous"></script>
     <script src="./js/game.js"></script>
     <script src="./js/gui.js"></script>
-    <script type="module">
+    <script>
         const game = createGame()
-        const { renderLayout } = createGameInterface($, game)
+        const { socket } = createSocketConnection(game)
+        const { renderLayout } = createGameInterface($, game, socket)
 
         renderLayout()
     </script>

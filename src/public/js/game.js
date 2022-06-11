@@ -64,6 +64,5 @@ function createGame(socket) {
     return {
         state,
         subscribe,
-        onClickMyCard,
     }
 }

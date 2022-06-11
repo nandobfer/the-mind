@@ -71,7 +71,7 @@ function createGameInterface($, game) {
             
             $newCard.on('click', function () {
                 const cardNumber = $(this).data('number')
-                game.onClickMyCard(cardNumber)
+                // game.onClickMyCard(cardNumber)
             })
 
             $newCard.addClass('my-card')

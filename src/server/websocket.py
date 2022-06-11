@@ -18,8 +18,12 @@ def serve(path):
 # Start of socketio events configuration
 # request.sid = client session id, used to identify the client
 
-# End of socketio events configuration
+
+@sockets.event
+def onConnect(sid):
+    print(f'connected: {sid}')
 
 
+    # End of socketio events configuration
 if __name__ == "__main__":
     sockets.run(app, debug=True, host="0.0.0.0", port=5000)

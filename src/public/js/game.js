@@ -1,4 +1,4 @@
-export default function createGame() {
+function createGame() {
     const observers = {
         onChangePlayers: [],
         onChangeLevel: [],

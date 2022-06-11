@@ -131,7 +131,7 @@
     <script src="./js/gui.js"></script>
 	<script src="./js/socket.js"></script>
     <script>
-        const { socket, subscribe } = createSocketConnection(game)
+        const { socket, subscribe } = createSocketConnection()
         const game = createGame(socket)
         const { renderLayout } = createGameInterface($, game, socket)
 

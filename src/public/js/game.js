@@ -57,7 +57,7 @@ function createGame(socket) {
 
     (function init() {
         socket.subscribe('onSetup', setState)
-        socket.subscribe('onNewPayer', addPlayer)
+        socket.subscribe('onNewPlayer', addPlayer)
         socket.subscribe('onRemovePlayer', removePlayer)
     })()
 

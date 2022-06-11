@@ -50,7 +50,7 @@ function createGame(socket) {
     }
 
     function notifyAll() {
-        for (const event of observers) {
+        for (const event of Object.keys(observers)) {
             notify(event)
         }
     }

@@ -3,6 +3,8 @@ function createSocketConnection() {
 
     const observers = {
         onSetup: [],
+        onNewPlayer: [],
+        onRemovePlayer: [],
     }
 
     socket.on('connect', () => {

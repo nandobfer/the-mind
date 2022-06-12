@@ -1,5 +1,7 @@
 function createSocketConnection() {
-    const socket = io();
+    const socket = io({
+        ping_interval: 1
+    });
 
     const observers = {
         onSetup: [],

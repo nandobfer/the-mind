@@ -44,7 +44,8 @@ function createSocketConnection() {
     }
 
     return {
+        id: socket.id,
+        emit: socket.emit,
         subscribe,
-        emit: socket.emit
     }
 }

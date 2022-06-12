@@ -6,6 +6,7 @@ function createGame(socket) {
         onChangePlayedCards: []
     };
 
+    const currentPlayerId = socket.id
     let state = {}
 
     function setState(newState) {
@@ -45,7 +46,7 @@ function createGame(socket) {
 
         for (const observerFunction of observers[event]) {
             typeof observerFunction === "function" &&
-                observerFunction(state)
+                observerFunction(state, currentPlayerId)
         }
     }
 

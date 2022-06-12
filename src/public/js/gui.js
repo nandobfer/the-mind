@@ -16,11 +16,13 @@ function createGameInterface($, game, socket) {
         $status.find('#shuriken').text(level.shuriken)
     }
 
-    function renderPlayers(state) {
+    function renderPlayers(state, currentPlayerId) {
         const { players } = state
         $players.html('')
 
         for (let playerId in players) {
+            if (playerId == currentPlayerId) continue;
+
             const player = players[playerId]
             const $newPlayer = $player.clone()
 

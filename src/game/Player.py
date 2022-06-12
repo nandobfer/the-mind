@@ -3,8 +3,9 @@ class Player():
         self.id = id
         self.table = table
         self.cards = table.deck.draw()
-
-        table.players.append(self)
+        # self.cards = []
+        self.is_willing = False
+        self.card = None
 
     def play(self, value):
         for card in self.cards:

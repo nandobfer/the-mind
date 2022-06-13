@@ -9,10 +9,11 @@ app = Flask(__name__, static_folder='../public')
 sockets = SocketIO(app, ping_interval=1)
 
 
-def bigPrint(text):
+def bigPrint(*args):
     print()
     print()
-    print(text)
+    for text in args:
+        print(text)
     print()
     print()
 
@@ -58,4 +59,4 @@ def onDisconnect():
 
     # End of socketio events configuration
 # if __name__ == "__main__":
-sockets.run(app, debug=True, host="0.0.0.0", port=80)
+sockets.run(app, debug=True, host="0.0.0.0", port=5000)

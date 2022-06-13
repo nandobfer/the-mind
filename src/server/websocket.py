@@ -37,8 +37,7 @@ def onConnect():
 
     player = table.newPlayer(sid)
     state = table.getState(sid)
-    bigPrint(f'connected: {sid}')
-    bigPrint(state)
+    bigPrint(f'connected: {sid}', state)
 
     sockets.emit('setup', state, to=sid)
     player = {

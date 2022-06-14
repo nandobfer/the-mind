@@ -42,6 +42,8 @@ class Table():
         for player in self.players:
             if player.id == sid:
                 self.players.remove(player)
+                for card in player.cards:
+                    self.deck.cards.append(card)
 
     def getState(self, sid):
         player = None

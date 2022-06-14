@@ -1,9 +1,11 @@
+import os
 from flask import Flask, request, render_template, send_from_directory
 from flask_socketio import SocketIO, emit
-import os
 from src.game.Table import Table
+from src.server.session import Session
 
 table = Table()
+session = Session()
 
 app = Flask(__name__, static_folder='../public')
 sockets = SocketIO(app, ping_interval=1)
@@ -34,10 +36,12 @@ def serve(path):
 @sockets.on('connect')
 def onConnect():
     sid = request.sid
+    ip = request.remote_addr
+    session.connect(ip, sid)
 
     player = table.newPlayer(sid)
     state = table.getState(sid)
-    bigPrint(f'connected: {sid}', state)
+    bigPrint(f'connected: {ip} - {sid}', state)
 
     sockets.emit('setup', state, to=sid)
     player = {
@@ -57,5 +61,7 @@ def onDisconnect():
     sockets.emit('remove-player', sid)
 
     # End of socketio events configuration
-# if __name__ == "__main__":
-sockets.run(app, debug=True, host="0.0.0.0", port=80)
+if __name__ == "__main__":
+    sockets.run(app, debug=True, host="0.0.0.0", port=5000)
+else:
+    sockets.run(app, debug=True, host="0.0.0.0", port=80)

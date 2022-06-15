@@ -38,12 +38,10 @@ class Table():
 
         return player
 
-    def removePlayer(self, sid):
-        for player in self.players:
-            if player.id == sid:
-                self.players.remove(player)
-                for card in player.cards:
-                    self.deck.cards.append(card)
+    def removePlayer(self, player):
+        self.players.remove(player)
+        for card in player.cards:
+            self.deck.cards.append(card)
 
     def getState(self, sid):
         player = None

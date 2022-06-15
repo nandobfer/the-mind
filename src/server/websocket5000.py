@@ -7,7 +7,7 @@ from src.server.session import Session
 table = Table()
 session = Session()
 
-app = Flask(__name__, static_folder='../../frontend/dist')
+app = Flask(__name__, static_folder='../public')
 sockets = SocketIO(app, ping_interval=1)
 
 
@@ -74,4 +74,4 @@ def getConnections():
     return str(connections)+'\n'
 
 
-sockets.run(app, debug=True, host="0.0.0.0", port=80)
+sockets.run(app, debug=True, host="0.0.0.0", port=5000)

@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-
-import { Login } from '../pages/Login';
+import { Route, Switch } from 'react-router-dom';
+import { Dashboard } from '../pages/Dashboard';
 
 const SignInRoutes: React.FC = () => {
 	return (
-		<Routes>
-			<Route path="/" element={<Login />} />
-		</Routes>
+		<Switch>
+			<Route exact path="/"><Dashboard/></Route>
+		</Switch>
 	);
 };
 

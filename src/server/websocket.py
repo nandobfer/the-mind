@@ -74,4 +74,4 @@ def getConnections():
     return str(connections)+'\n'
 
 
-sockets.run(app, debug=True, host="0.0.0.0", port=80)
+sockets.run(app, debug=True, host="0.0.0.0", port=5000)
